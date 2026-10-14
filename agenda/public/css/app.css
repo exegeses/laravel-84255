@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+*{margin: 0px; padding: 0px; box-sizing: border-box}
+:root{
+    /* éxito */
+    --color-ok: hsl(140, 60%, 45%);
+    --color-ok-light: hsl(140, 80%, 85%);
+    --sombra-ok: 0 0 12px hsla(140, 60%, 45%, .35);
+    /* error */
+    --color-error: hsl(0, 75%, 62%);
+    --color-error-light: hsl(0, 100%, 80%);
+    --sombra-error: 0 0 12px hsla(0, 75%, 62%, .35);
+    /* warning */
+    --color-warning: hsl(40,80%, 82%);
+    --color-warning-light: hsl(40, 100%, 90%);
+    --sombra-warning: hsl(40, 80%, 40%);
+}
+body{
+    width: 768px;
+    margin: auto;
+    background-color: #272A2D;
+    color: #f5dcab;
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+}
+a{color: #f5dcab;}
+h1, h2{margin-top: 24px;font-weight: 400;}
+/* listador */
+table{margin-top: 40px; width: 100%;}
+th{font-weight: 300;text-align: left;}
+thead tr{background-color: #1d1e21}
+#add {text-align: center;}
+tbody tr:nth-child(odd){background-color: #313337;}
+tbody tr:hover{background-color: #44464a}
+td{font-weight: 500;}
+th, td{
+    padding: 4px 0px;
+}
+/* formulario */
+form{
+    margin: 40px auto 0px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+    padding: 24px;
+    background-color: #1d1e21;
+    border-radius: 8px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4);
+}
+label{font-weight: 300;}
+input{
+    background-color: #1d1e21;
+    border: 1px solid #44464a;
+    color: #f5dcab;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+input:focus{
+    outline: none;
+    border-color: #f5dcab;
+}
+
+form .acciones{
+    padding: 8px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button{
+    background-color: #f5dcab;
+    color: #272A2D;
+    border: none;
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    width: fit-content;
+}
+button:hover{
+    background-color: #e0c78f;
+}
+
+/* notificaciones */
+#notificaciones{
+    margin-top: 20px;
+    padding: 16px 32px;
+    border: 1px solid;
+    border-radius: 8px;
+}
+.success{
+    border-color: var(--color-ok);
+    color: var(--color-ok);
+    box-shadow: var(--sombra-ok);
+}
+.error{
+    border-color: var(--color-error);
+    color: var(--color-error);
+    box-shadow: var(--sombra-error);
+}
+.warning{
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+    box-shadow: var(--sombra-warning);
+}
+
+ul{
+    margin: 8px 24px;
+}
+    ul li{
+        margin: 4px 0px;
+    }
+
+/* páginas de error */
+.page-errors{
+    margin-top: 80px;
+    font-size: 288px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.confirm{
+    margin-top: 80px;
+    padding: 24px;
+    border-radius: 16px;
+}

@@ -18,7 +18,8 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($personas as $persona)
+        {{--  @foreach($personas as $persona) --}}
+        @forelse( $personas as $persona )
         <tr>
             <td>{{ $persona->nombre }} </td>
             <td>{{ $persona->apellido }}</td>
@@ -28,7 +29,14 @@
             <td><a href="/edit/{{ $persona->id }}">edit</a></td>
             <td><a href="/confirm/{{ $persona->id }}">delete</a></td>
         </tr>
-        @endforeach
+        @empty
+        <tr>
+            <td colspan="7" style="padding: 40px; text-align: center;">
+                No se encontraron personas
+            </td>
+        </tr>
+        @endforelse
+
         </tbody>
     </table>
 

@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+    --color-violeta: hsl(247, 87%, 73%);
+    --color-violeta-dark: hsl(247, 47%, 47%);
+    --color-violeta-light: hsl(247, 90%, 80%);
+    --color-gris-light: hsl(244, 20%, 85%);
+    --color-dorado: hsl(45, 90%, 60%);
+    --color-warning: hsl(38, 90%, 55%);
+    --color-warning-light: hsl(40, 100%, 80%);
+    --shadow-warning: 0 0 12px hsla(38, 90%, 55%, .35);
+}
+
+@layer base {
+    html {
+        font-size: 100%;
+    }
+
+    body {
+        font-size: 1.25em;
+        background: linear-gradient(135deg, #0a0a14 0%, #14122a 45%, #221d42 100%);
+        color: #f5f4fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1, h2, h3 {
+        font-weight: 400;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}

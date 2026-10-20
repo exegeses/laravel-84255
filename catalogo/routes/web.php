@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 ###### dashboard de marcas
 Route::get('/marcas', [MarcaController::class, 'index']);
+Route::get('/marcas/create', [MarcaController::class, 'create']);

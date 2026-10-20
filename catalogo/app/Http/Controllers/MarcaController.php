@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marca;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,15 +13,17 @@ class MarcaController extends Controller
      */
     public function index() : View
     {
-        return view('marcas.index');
+        //$marcas = Marca::orderByDesc('id_marca')->get();
+        $marcas = Marca::orderByDesc('id_marca')->paginate(8);
+        return view('marcas.index', ['marcas' => $marcas]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
-        //
+        return view('marcas.create');
     }
 
     /**

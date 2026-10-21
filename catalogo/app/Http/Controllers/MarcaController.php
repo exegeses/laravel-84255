@@ -31,7 +31,15 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = $request->validate(
+                                ['marca'=>'required|unique:marcas,marca|min:2|max:50'],
+                                [
+                                    'marca.required'=>'El campo "Marca" es obligatorio',
+                                    'marca.unique'=>'Ya esxiste una marca con ese nombre',
+                                    'marca.min'=>'La marca debe tener 2 caracteres como mínimo',
+                                    'marca.max'=>'La marca debe tener 50 caracteres como máximo'
+                                ]
+                            );
     }
 
     /**

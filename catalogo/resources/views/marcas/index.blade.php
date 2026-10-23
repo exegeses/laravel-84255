@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="flex gap-3.5">
-                    <a href="!#" class="text-gris-light hover:text-violeta-light">
+                    <a href="/marcas/{{ $marca->id_marca }}/edit" class="text-gris-light hover:text-violeta-light">
                         <x-icon-edit />
                     </a>
                     <a href="!#" class="text-gris-light hover:text-violeta-light">

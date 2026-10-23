@@ -68,3 +68,26 @@ class Proveedor
 {
 }
 ```
+
+## Columnas de tipo TimeStamp
+De manera predeterminada árabe asume que tenemos en cada una de nuestras tablas dos columnas llamadas
+* `updated_at` 
+* `created_at`
+Ambas de tipo timestamp
+
+Si nosotros las queremos deshabilitar
+1. atributo public "timestamps"
+
+```php
+class Proveedor
+{
+    public $timestamps = false;
+}
+```        
+2. Mediante atributos de PHP
+```php
+#[Table(timestamps: false)]
+class Proveedor
+{
+}
+```

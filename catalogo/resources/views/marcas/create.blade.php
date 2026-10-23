@@ -10,13 +10,12 @@
         </div>
         <p class="text-gris-light text-sm mt-1 pl-4">Ingresa el nombre de la nueva marca.</p>
 
-        @dump($errors)
-
         <form action="/marcas/store" method="post" class="max-w-lg mx-auto mt-6 p-6 rounded-xl shadow-lg shadow-black/40 bg-white/[0.02]">
-
+            @csrf
 
             <label for="marca" class="text-gris-light text-sm">Marca</label>
             <input type="text" name="marca" id="marca"
+                   value="{{ old('marca') }}"
                    class="w-full mt-2 bg-black/20 border rounded-lg px-4 py-3 text-white outline-none
                        {{ $errors->has('marca') ? 'border-red-400' : 'border-violeta/40 focus:border-violeta' }}">
 

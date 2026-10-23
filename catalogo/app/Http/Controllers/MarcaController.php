@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marca;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -27,19 +29,49 @@ class MarcaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Método para validar datos enviados por el formulario
+     * @param Request $request
+     * @return void
      */
-    public function store(Request $request)
+    private function validarFrom(Request $request): void
     {
         $datos = $request->validate(
-                                ['marca'=>'required|unique:marcas,marca|min:2|max:50'],
-                                [
-                                    'marca.required'=>'El campo "Marca" es obligatorio',
-                                    'marca.unique'=>'Ya esxiste una marca con ese nombre',
-                                    'marca.min'=>'La marca debe tener 2 caracteres como mínimo',
-                                    'marca.max'=>'La marca debe tener 50 caracteres como máximo'
-                                ]
-                            );
+            ['marca' => 'required|unique:marcas,marca|min:2|max:50'],
+            [
+                'marca.required' => 'El campo "Marca" es obligatorio',
+                'marca.unique' => 'Ya esxiste una marca con ese nombre',
+                'marca.min' => 'La marca debe tener 2 caracteres como mínimo',
+                'marca.max' => 'La marca debe tener 50 caracteres como máximo'
+            ]
+        );
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request) : RedirectResponse
+    {
+        $this->validarFrom($request);
+
+        try {
+            $marca = new Marca();
+            $marca->marca = $request->marca;
+            $marca->save();
+
+            return redirect('/marcas')
+                        ->with([
+                                'status' => 'success',
+                                'mensaje' => 'Marca: '.$marca->marca.' agregada correctamente.'
+                            ]
+                        );
+        }
+        catch (QueryException $e) {
+            return redirect('/marcas')
+                        ->with([
+                            'status' => 'error',
+                            'mensaje' => 'No se pudo agregar la marca: '.$request->marca.'.'
+                        ]);
+        }
     }
 
     /**
@@ -53,9 +85,16 @@ class MarcaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
-        //
+    /*
+   findOrFail($id) -> si no encuanta registro:
+    1. Lanza una excepción de tipo ModelNotFoundExeption.
+    2. La intercepta y sin que tengamos que escribir try{}catch(){}
+    3. Redirige automáticamente a una página de error 404
+    **/
+        $marca = Marca::findOrFail($id);
+        return view('marcas.edit', ['marca' => $marca]);
     }
 
     /**
@@ -63,7 +102,26 @@ class MarcaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validarFrom($request);
+        $marca = Marca::findOrFail($id);
+        try {
+            $marca->marca = $request->marca;
+            $marca->save();
+            return redirect('/marcas')
+                ->with([
+                        'status' => 'success',
+                        'mensaje' => 'Marca: '.$marca->marca.' modificada correctamente.'
+                    ]
+                );
+        }
+        catch (QueryException $e) {
+            return redirect('/marcas')
+                ->with([
+                    'status' => 'error',
+                    'mensaje' => 'No se pudo modificar la marca: '.$request->marca.'.'
+                ]);
+        }
+
     }
 
     /**
@@ -73,4 +131,5 @@ class MarcaController extends Controller
     {
         //
     }
+
 }

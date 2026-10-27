@@ -121,9 +121,15 @@ class MarcaController extends Controller
                     'mensaje' => 'No se pudo modificar la marca: '.$request->marca.'.'
                 ]);
         }
-
     }
 
+    public function confirm(string $id) : View
+    {
+        //$marca = Marca::where('id_marca', $id)->first();
+        //$marca = Marca::find($id);
+        $marca = Marca::findOrFail($id);
+
+    }
     /**
      * Remove the specified resource from storage.
      */

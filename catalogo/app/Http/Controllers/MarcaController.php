@@ -123,12 +123,22 @@ class MarcaController extends Controller
         }
     }
 
-    public function confirm(string $id) : View
+    public function confirm(string $id) : View | RedirectResponse
     {
         //$marca = Marca::where('id_marca', $id)->first();
         //$marca = Marca::find($id);
         $marca = Marca::findOrFail($id);
-
+        // dd($marca->productos()->exists()); // bool
+        // dd($marca->productos()->count()); // int
+        // dd($marca->productos()->get()); // collection
+        if ( $marca->productos()->exists() ) {
+            return redirect('/marcas')
+                ->with([
+                    'status' => 'error',
+                    'mensaje' => 'No se puede eliminar la marca '.$marca->marca.' porque tiene productos relacionados',
+                ]);
+        }
+        return view('marcas.confirm', ['marca' => $marca]);
     }
     /**
      * Remove the specified resource from storage.

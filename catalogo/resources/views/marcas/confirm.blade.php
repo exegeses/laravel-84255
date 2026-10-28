@@ -21,7 +21,9 @@
             <p class="text-warning-light text-lg mt-6">¿Está seguro que desea eliminar esta marca?</p>
 
             <div class="bg-violeta/10 border border-violeta/30 rounded-lg py-3 mt-6">
-                <span class="text-violeta-light text-xl font-semibold">{{ $marca->marca }}</span>
+                <span class="text-violeta-light text-xl font-semibold">
+                    {{ $marca->marca }}
+                </span>
             </div>
 
             <p class="text-gris-light text-sm mt-6">

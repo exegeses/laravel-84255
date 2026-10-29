@@ -143,9 +143,24 @@ class MarcaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : RedirectResponse
     {
-        //
+        $marca = Marca::findOrFail($id);
+        try {
+            $marca->delete();
+            return redirect('/marcas')
+                        ->with([
+                            'status' => 'success',
+                            'mensaje' => 'Marca: '.$marca->marca.' eliminada correctamente.'
+                        ]);
+        }catch (QueryException $e) {
+            return redirect('/marcas')
+                        ->with([
+                            'status' => 'error',
+                            'mensaje' => 'No se pudo eliminar la marca: '.$marca->marca.'.'
+                        ]);
+        }
+
     }
 
 }

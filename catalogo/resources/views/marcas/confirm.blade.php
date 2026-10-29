@@ -34,8 +34,9 @@
                 <a href="/marcas" class="flex items-center gap-1.5 border border-violeta hover:bg-violeta/10 text-violeta-light text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors">
                     <x-icon-x /> Cancelar
                 </a>
-                <form action="" method="">
-
+                <form action="/marcas/{{ $marca->id_marca }}/delete" method="post">
+                @csrf
+                @method('delete')
 
                     <button type="submit" class="flex items-center gap-2 bg-warning hover:bg-warning-light text-white hover:text-[hsl(240,20%,8%)] text-sm font-semibold px-8 py-3.5 rounded-lg shadow-warning transition-all duration-300 ease-in-out">
                         <div class="w-4 h-4 shrink-0"><x-icon-trash-filled /></div> Eliminar marca

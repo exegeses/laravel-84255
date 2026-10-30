@@ -20,21 +20,23 @@
     <section class="flex flex-col gap-2.5 pl-4 pb-8">
 
 
+        @forelse( $productos as  $producto )
             <article class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 bg-white/[0.03] hover:bg-white/[0.06] rounded-xl p-4 transition-colors">
 
-                <img src="/img/productos/no-disponible.svg" alt="{{ 'producto' }}" class="w-full h-28 md:w-14 md:h-14 rounded-lg object-cover">
+                <img src="/img/productos/{{ $producto->imagen }}" alt="{{ $producto->producto }}" class="w-14 h-14 rounded-lg object-cover">
 
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-1.5">
-
+                        @if( $producto->destacado )
                             <span class="text-dorado">
                                 <x-icon-star />
                             </span>
+                        @endif
 
-                        <span class="text-white text-sm font-medium">{{ 'producto' }}</span>
+                        <span class="text-white text-sm font-medium">{{ $producto->producto }}</span>
                     </div>
                     <p class="text-gris-light text-xs mt-0.5">
-                        {{ 'marca' }}
+                        {{ $producto->marcas->marca }}
                         ·
                         {{ 'categoria' }}
                     </p>
@@ -42,13 +44,14 @@
 
                 <div class="flex items-center justify-between md:justify-end gap-4">
                     <span class="text-violeta-light text-sm font-semibold whitespace-nowrap">
-                        U$D {{ 'precio' }}
+                        U$D {{ $producto->precio }}
                     </span>
 
-
+                    @if( $producto->activo )
                         <span class="bg-green-500/15 text-green-400 text-xs px-3 py-1 rounded-full whitespace-nowrap">Activo</span>
-
+                    @else
                         <span class="bg-red-500/15 text-red-400 text-xs px-3 py-1 rounded-full whitespace-nowrap">Inactivo</span>
+                    @endif
 
                 </div>
 
@@ -62,10 +65,13 @@
                 </div>
 
             </article>
-
-
+        @empty
+            <article class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 bg-white/[0.03] hover:bg-white/[0.06] rounded-xl p-4 transition-colors text-center">
+            No se han encontrado registros
+            </article>
+        @endforelse
     </section>
 
-    {{ 'paginador' }}
+    {{ $productos->links() }}
 
 @endsection

@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : View
     {
-        return view('productos.index');
+        // with() para resolver el N+1
+        $productos = Producto::with(['marcas'])
+                                ->orderByDesc('id_producto')
+                                ->paginate(8);
+        return view('productos.index', ['productos' => $productos]);
     }
 
     /**

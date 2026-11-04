@@ -22,3 +22,5 @@ Route::delete('/marcas/{id}/delete', [MarcaController::class, 'destroy']);
 
 ###### dashboard de productos
 Route::get('/productos', [ProductoController::class, 'index']);
+Route::get('/productos/create', [ProductoController::class, 'create']);
+Route::post('/productos/store', [ProductoController::class, 'store']);

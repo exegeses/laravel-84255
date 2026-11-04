@@ -12,8 +12,7 @@
 
         <form action="/productos/store" method="post" enctype="multipart/form-data"
               class="max-w-lg mx-auto mt-6 p-6 rounded-xl shadow-lg shadow-black/40 bg-white/[0.02]">
-            @csrf
-
+        @csrf
             {{-- Producto --}}
             <label for="producto" class="text-gris-light text-sm">Producto</label>
             <input type="text" name="producto" id="producto" maxlength="50"
@@ -40,7 +39,7 @@
                     class="w-full mt-2 bg-black/20 border rounded-lg px-4 py-3 text-white outline-none
                     {{ $errors->has('id_marca') ? 'border-red-400' : 'border-violeta/40 focus:border-violeta' }}">
                 <option value="" class="bg-gray-900">Selecciona una marca</option>
-                @foreach ($marcas as $marca)
+                @foreach($marcas as $marca)
                     <option value="{{ $marca->id_marca }}" class="bg-gray-900"
                         @selected(old('id_marca') == $marca->id_marca)>
                         {{ $marca->marca }}
@@ -57,7 +56,7 @@
                     class="w-full mt-2 bg-black/20 border rounded-lg px-4 py-3 text-white outline-none
                     {{ $errors->has('id_categoria') ? 'border-red-400' : 'border-violeta/40 focus:border-violeta' }}">
                 <option value="" class="bg-gray-900">Selecciona una categoría</option>
-                @foreach ($categorias as $categoria)
+                @foreach($categorias as $categoria)
                     <option value="{{ $categoria->id_categoria }}" class="bg-gray-900"
                         @selected(old('id_categoria') == $categoria->id_categoria)>
                         {{ $categoria->categoria }}

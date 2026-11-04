@@ -8,7 +8,7 @@
             <p class="text-gris-light text-sm mt-1 pl-4">Administración de productos.</p>
         </div>
 
-        <a href="#" class="bg-gradient-to-br from-violeta to-violeta-dark hover:from-violeta-light hover:to-violeta text-white text-sm font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-violeta/30 duration-300 transition-all whitespace-nowrap">
+        <a href="/productos/create" class="bg-gradient-to-br from-violeta to-violeta-dark hover:from-violeta-light hover:to-violeta text-white text-sm font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-violeta/30 duration-300 transition-all whitespace-nowrap">
             Agregar producto
         </a>
     </div>
@@ -38,7 +38,7 @@
                     <p class="text-gris-light text-xs mt-0.5">
                         {{ $producto->marcas->marca }}
                         ·
-                        {{ 'categoria' }}
+                        {{ $producto->categorias->categoria }}
                     </p>
                 </div>
 

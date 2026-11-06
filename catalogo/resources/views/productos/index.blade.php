@@ -56,10 +56,10 @@
                 </div>
 
                 <div class="flex gap-3.5 justify-end md:justify-start pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
-                    <a href="#" class="text-gris-light hover:text-violeta-light">
+                    <a href="/productos/{{ $producto->id_producto }}/edit" class="text-gris-light hover:text-violeta-light">
                         <x-icon-edit />
                     </a>
-                    <a href="#" class="text-gris-light hover:text-violeta-light">
+                    <a href="/productos/{{ $producto->id_producto }}/confirm" class="text-gris-light hover:text-violeta-light">
                         <x-icon-delete />
                     </a>
                 </div>

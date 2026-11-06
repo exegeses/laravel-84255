@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductoRequest extends FormRequest
 {
@@ -20,13 +22,18 @@ class ProductoRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(Request $request): array
     {
         return [
-            'producto'=>'required|unique:productos,producto|min:3|max:50',
+            //'producto'=>'required|unique:productos,producto|min:3|max:50',
+            //'producto' => 'required|unique:productos,producto,'.$this->id_producto.',id_producto|min:3|max:50',
+            'producto'=>'required|'.Rule::unique('productos','producto')
+                                            ->ignore( $request->id, 'id_producto').'|min:3|max:50',
             'precio'=>'required|numeric|min:0',
-            'id_marca'=>'required|integer|exists:marcas,id_marca',
-            'id_categoria'=>'required|integer|exists:categorias,id_categoria',
+            //'id_marca'=>'required|integer|exists:marcas,id_marca',
+            'id_marca'=>Rule::exists('marcas','id_marca'),
+            //'id_categoria'=>'required|integer|exists:categorias,id_categoria',
+            'id_categoria'=>Rule::exists('categorias','id_categoria'),
             'descripcion'=>'max:1000',
             'imagen'=>'mimes:png,jpg,jpeg,webp,svg,gif|max:3072',
             'destacado'=>'boolean',

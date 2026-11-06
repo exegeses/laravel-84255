@@ -24,3 +24,6 @@ Route::delete('/marcas/{id}/delete', [MarcaController::class, 'destroy']);
 Route::get('/productos', [ProductoController::class, 'index']);
 Route::get('/productos/create', [ProductoController::class, 'create']);
 Route::post('/productos/store', [ProductoController::class, 'store']);
+Route::get('/productos/{id}/edit', [ProductoController::class, 'edit']);
+Route::put('/productos/{id}/update', [ProductoController::class, 'update']);
+Route::get('/productos/{id}/confirm', [ProductoController::class, 'confirm']);

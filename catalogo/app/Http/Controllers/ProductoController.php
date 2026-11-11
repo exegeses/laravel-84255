@@ -15,6 +15,16 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function portada() : View
+    {
+        // with() para resolver el N+1
+        $productos = Producto::with(['marcas', 'categorias'])
+            ->orderByDesc('id_producto')
+            ->where('activo', 1)
+            ->paginate(8);
+        return view('catalogo', ['productos' => $productos]);
+    }
     public function index() : View
     {
         // with() para resolver el N+1

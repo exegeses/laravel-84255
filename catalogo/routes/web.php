@@ -3,12 +3,14 @@
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-// Route::metodo('URI', [Controlador, 'metodo'])
+Route::get('/',[ProductoController::class,'portada']);
+
+## dashboard al autologin
+Route::view('/dashboard', 'dashboard');
 ###### dashboard de marcas
 Route::get('/marcas', [MarcaController::class, 'index']);
 Route::get('/marcas/create', [MarcaController::class, 'create']);
@@ -27,3 +29,13 @@ Route::post('/productos/store', [ProductoController::class, 'store']);
 Route::get('/productos/{id}/edit', [ProductoController::class, 'edit']);
 Route::put('/productos/{id}/update', [ProductoController::class, 'update']);
 Route::get('/productos/{id}/confirm', [ProductoController::class, 'confirm']);
+
+
+/*##### Registo de usuarios ############*/
+Route::get('/registro', [RegisterController::class, 'create']);
+Route::post('/registro', [RegisterController::class, 'store']);
+/*## formulario de login*/
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login']);
+// logout
+Route::post('/logout', [LoginController::class, 'logout']);
